@@ -1,0 +1,15 @@
+# Use root/example as user/password credentials
+version: '3.1'
+services:
+  mariadb:
+    image: mariadb
+    volumes:
+      - "/Users/mac/Documents/work/remote-gateway/docker/mariadb/data:/var/lib/mysql"
+    # restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: gzx12345678
+  adminer:
+    image: adminer
+    # restart: always
+    ports:
+      - 9100:8080

@@ -1,0 +1,44 @@
+# Use root/example as user/password credentials
+version: '3.1'
+services:
+  mariadb:
+    image: mariadb
+    volumes:
+      - "/Users/mac/Documents/work/remote-gateway/docker/mariadb/data:/var/lib/mysql"
+    # restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: gzx12345678
+  adminer:
+    image: adminer
+    # restart: always
+    ports:
+      - 9100:8080
+  guacd:
+    image: "guacamole/guacd"
+    # container_name: guacd
+    # hostname: guacd
+    # restart: always
+    volumes:
+      - "/Users/mac/Documents/work/remote-gateway/docker/guacamole/guacd/data:/data"
+    ports:
+      - "4822:4822"
+    # network_mode: bridge
+
+  guacamole:
+    image: "guacamole/guacamole"
+    # container_name: guacamole
+    # hostname: guacamole
+    # restart: always
+    volumes:
+      - "/Users/mac/Documents/work/remote-gateway/docker/guacamole/guacamole/guac-home:/data"
+    ports:
+      - "9200:8080"
+    # network_mode: bridge
+    environment:
+      - "GUACD_HOSTNAME=guacd"
+      - "GUACD_PORT=4822"
+      - "MYSQL_HOSTNAME=mariadb"
+      - "MYSQL_PORT=3306"
+      - "MYSQL_DATABASE=guacamole"
+      - "MYSQL_USER=root"
+      - "MYSQL_PASSWORD=gzx12345678"
