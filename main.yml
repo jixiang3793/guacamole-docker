@@ -22,8 +22,10 @@ services:
       - "/Users/mac/Documents/work/remote-gateway/docker/guacamole/guacd/data:/data"
     ports:
       - "4822:4822"
-    # network_mode: bridge
-
+  client:
+    image: "hezhi/guacamole-client"
+    ports:
+      - "9300:9300"
   guacamole:
     image: "guacamole/guacamole"
     # container_name: guacamole
