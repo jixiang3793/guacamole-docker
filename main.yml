@@ -23,7 +23,7 @@ services:
     ports:
       - "4822:4822"
   client:
-    image: "hezhi/guacamole-client"
+    image: "jixiang255/guacamole-client"
     ports:
       - "9300:9300"
   guacamole:
